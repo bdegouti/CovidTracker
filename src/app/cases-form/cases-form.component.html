@@ -1,0 +1,45 @@
+<form
+class="rounded"
+[formGroup]="caseForm"
+(ngSubmit)="onSubmit(caseForm.value)"
+novalidate
+>
+    <div class="form-group">
+        <label for="name-id">Name</label> 
+        <input type="text" class="form-control" id="name-id" formControlName="name" placeholder="Enter name" required>
+    </div>
+    <div *ngIf="caseForm.controls.name.dirty && caseForm.controls.name.errors?.required" class="form-error-message">Name is required</div>
+
+    <div class="form-group">
+        <label for="phoneNumber-id">Phone Number</label> 
+        <input type="tel" class="form-control" id="phoneNumber-id" formControlName="phoneNumber" placeholder="999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+    </div>
+    <div *ngIf="caseForm.controls.phoneNumber.dirty && caseForm.controls.phoneNumber.errors?.required" class="form-error-message">phone is required</div>
+    <div *ngIf="caseForm.controls.phoneNumber.dirty && caseForm.controls.phoneNumber.errors?.pattern" class="form-error-message">phone number must be in 999-999-9999 format</div>
+
+    <div class="form-group">
+        <label for="location-id">Location</label> 
+        <select id="location-id" formControlName="location" required>
+            <option value="" disabled selected>Select your location</option>
+            <option *ngFor="let l of locations" [value]="l.locName">
+                {{ l.locName }}
+            </option>
+        </select>   
+    </div>
+    <div *ngIf="caseForm.controls.location.dirty && caseForm.controls.location.errors?.required" class="form-error-message">location is required</div>
+
+    <div class="form-group">
+        <label for="date-id">Date</label> 
+        <input type="datetime-local" class="form-control" id="date-id" formControlName="date" required>
+    </div>
+    <div *ngIf="caseForm.controls.date.dirty && caseForm.controls.date.errors?.required" class="form-error-message">date is required</div>
+    
+    <div class="form-group">
+        <label for="extra-notes-id">Extra Notes (optional)</label> 
+        <input type="text" class="form-control" id="extra-notes-id" formControlName="extraNotes">
+    </div>
+   
+    <button type="submit" class="btn btn-primary" [disabled]="!caseForm.valid">ADD</button>
+    <button type="button" (click)="reveal()" class="btn">Add Location</button>
+</form>
+<app-location-form *ngIf=isRevealed></app-location-form>

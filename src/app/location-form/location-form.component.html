@@ -1,0 +1,36 @@
+<form
+class="rounded"
+[formGroup]="locationForm"
+(ngSubmit)="onSubmit(locationForm.value)"
+novalidate
+>
+    <div class="form-group">
+        <label for="LocName-id">Name of location</label> 
+        <input type="text" class="form-control" id="locName-id" formControlName="locName" required>
+    </div>
+    <div *ngIf="locationForm.controls.locName.dirty && locationForm.controls.locName.errors?.required" class="form-error-message">Location Name Cannot be blank</div>
+    <div *ngIf="locationForm.controls.locName.dirty && isInvalid" class="form-error-message">location already exists</div>
+    <div class="form-group">
+        <label for="lat-id">Latitude</label> 
+        <input type="number" class="form-control" id="lat-id" formControlName="lat" required>
+    </div>
+    <div *ngIf="locationForm.controls.lat.dirty 
+    && locationForm.controls.lat.errors?.required"
+     class="form-error-message">Latitude cannot be blank</div>
+     <div *ngIf="locationForm.controls.lat.dirty
+    && locationForm.controls.lat.errors?.max
+    && locationForm.controls.lat.errors?.min"
+     class="form-error-message">Latitude must be between -90 and 90</div>
+    <div class="form-group">
+        <label for="long-id">Longitude</label> 
+        <input type="number" class="form-control" id="long-id" formControlName="long" required>
+    </div>
+    <div *ngIf="locationForm.controls.long.dirty
+    && locationForm.controls.long.errors?.required"
+     class="form-error-message">Longitude cannot be blank</div>
+    <div *ngIf="locationForm.controls.long.dirty
+    && locationForm.controls.long.errors?.max
+    && locationForm.controls.long.errors?.min"
+     class="form-error-message">Longitude must be between -180 and 180</div>
+    <button type="submit" class="btn btn-primary" [disabled]="!locationForm.valid">ADD</button>
+</form>

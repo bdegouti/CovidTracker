@@ -1,9 +1,23 @@
+<main>
+  <div id="map-container">
+    <app-map></app-map>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+          <th style="width:20%" (click)="sortByLocation()">Name</th>
+          <th style="width:20%" (click)="sortByPerson()">Person Reported</th>
+          <th style="width:20%" (click)="sortByDate()">Date of Visit</th>
+          <th style="width:20%"></th>
+          <th style="width:20%"></th>
+      </tr>
+    </thead>
+    <tr app-cases
+    *ngFor="let c of cases"
+    [cases_input]="c"
+   ></tr>
+  </table>
 
-<table class="table table-striped table-bordered">
-  <tr>
-      <th>Name</th>
-      <th>Person Reported</th>
-      <th>Date of Visit</th>
-  </tr>
-</table>
-<app-cases></app-cases>
+  <button (click)="reveal()" class="btn btn-block">Create Covid Report</button>
+  <app-cases-form *ngIf=isRevealed></app-cases-form>
+</main>
