@@ -33,7 +33,7 @@ export class CasesFormComponent implements OnInit {
     this.cs.add(newCase);
     this.caseForm.reset();
     this.ls.callMap();
-    //TODO figure out why this won't post to server
+    //TODO
     this.http.post('https://218.selfip.net/apps/SYnNk5hITi/collections/1/documents', {
       "key": newCase.phoneNumber,
       "data": newCase

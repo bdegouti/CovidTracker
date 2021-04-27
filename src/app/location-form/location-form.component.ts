@@ -33,7 +33,7 @@ export class LocationFormComponent implements OnInit {
       }
     }
     this.ls.add(nl);
-    //TODO figure out why this won't post to server
+    //TODO
     this.http.post('https://218.selfip.net/apps/SYnNk5hITi/collections/1/documents', {
       "key": nl.locName,
       "data": nl

@@ -51,6 +51,8 @@ export class AppComponent {
         console.log("cs-AT GET:" + (error));
       }
     )
+
+    this.cases = this.cs.cases;
   }
 
   reveal(){
